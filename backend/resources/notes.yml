@@ -1,0 +1,74 @@
+createNote:
+  # Defines an HTTP API endpoint that calls the create function in notes.js
+  # - path: url path is /notes
+  # - method: POST request
+  # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
+  #     domain api call
+  # - authorizer: authenticate using the AWS IAM role
+  handler: src/notes.create
+  events:
+    - http:
+        path: notes
+        method: post
+        cors: true
+        authorizer: aws_iam
+
+getNote:
+  # Defines an HTTP API endpoint that calls the get function in notes.js
+  # - path: url path is /notes/{id}
+  # - method: GET request
+  # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
+  #     domain api call
+  # - authorizer: authenticate using the AWS IAM role
+  handler: src/notes.get
+  events:
+    - http:
+        path: notes/{id}
+        method: get
+        cors: true
+        authorizer: aws_iam
+
+listNotes:
+  # Defines an HTTP API endpoint that calls the list function in notes.js
+  # - path: url path is /notes
+  # - method: GET request
+  # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
+  #     domain api call
+  # - authorizer: authenticate using the AWS IAM role
+  handler: src/notes.list
+  events:
+    - http:
+        path: notes
+        method: get
+        cors: true
+        authorizer: aws_iam
+
+updateNote:
+  # Defines an HTTP API endpoint that calls the update function in notes.js
+  # - path: url path is /notes/{id}
+  # - method: PUT request
+  # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
+  #     domain api call
+  # - authorizer: authenticate using the AWS IAM role
+  handler: src/notes.update
+  events:
+    - http:
+        path: notes/{id}
+        method: put
+        cors: true
+        authorizer: aws_iam
+
+deleteNote:
+  # Defines an HTTP API endpoint that calls the remove function in notes.js
+  # - path: url path is /notes/{id}
+  # - method: DELETE request
+  # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
+  #     domain api call
+  # - authorizer: authenticate using the AWS IAM role
+  handler: src/notes.remove
+  events:
+    - http:
+        path: notes/{id}
+        method: delete
+        cors: true
+        authorizer: aws_iam
