@@ -11,11 +11,11 @@ Resources:
         - email
       Policies:
         PasswordPolicy:
-          MinimumLength: 8
-          RequireLowercase: true
-          RequireNumbers: true
-          RequireSymbols: true
-          RequireUppercase: true
+          MinimumLength: 6
+          RequireLowercase: false
+          RequireNumbers: false
+          RequireSymbols: false
+          RequireUppercase: false
 
   CognitoUserPoolClient:
     Type: AWS::Cognito::UserPoolClient
