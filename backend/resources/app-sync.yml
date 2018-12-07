@@ -40,16 +40,16 @@ Resources:
             description: String!
           ): Task
             @aws_auth(cognito_groups: ["AdminGroup"])
-          # Both Employees and Managers can update a task's status
+          # Both User and Admin can update a task's status
           updateTaskStatus(id: ID!, taskStatus: String!): Task
             @aws_auth(cognito_groups: ["UserGroup","AdminGroup"])
         }
 
         type Query {
-          # Users belonging to both EmployeesGroup and ManagerGroup can read a particular task
+          # Users belonging to both User and Admin can read a particular task
           getTask(id: ID!): Task
             @aws_auth(cognito_groups: ["UserGroup","AdminGroup"])
-          # Only Managers can list all the Tasks
+          # Only Admin can list all the Tasks
           allTasks(nextToken: String): TaskConnection
             @aws_auth(cognito_groups: ["AdminGroup"])
         }
