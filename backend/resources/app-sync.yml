@@ -11,13 +11,13 @@ Resources:
       ProvisionedThroughput:
         ReadCapacityUnits: 5
         WriteCapacityUnits: 5
-      TableName: ${self:custom.stage}-task-table
+      TableName: ${{self:custom.stage}}-task-table
     DependsOn: AppSyncAPI
 
   AppSyncAPI:
     Type: "AWS::AppSync::GraphQLApi"
     Properties:
-      Name: ${self:custom.stage}-app-sync-api
+      Name: ${{self:custom.stage}}-app-sync-api
       AuthenticationType: "AMAZON_COGNITO_USER_POOLS"
       UserPoolConfig:
         UserPoolId: !Ref CognitoUserPool
@@ -75,7 +75,7 @@ Resources:
   AppSyncGroupsAuthSampleDynamoDBRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: "AppSyncGroupsSampleDDBRole-${self:custom.stage}"
+      RoleName: "AppSyncGroupsSampleDDBRole-${{self:custom.stage}}"
       ManagedPolicyArns:
         - Ref: AppSyncGroupsAuthSampleDynamoDBPolicy
       AssumeRolePolicyDocument:
@@ -122,7 +122,7 @@ Resources:
       - AppSyncAPI
     Properties:
       ApiId: !GetAtt AppSyncAPI.ApiId
-      Name: TaskDynamoDataSource${self:custom.stage}
+      Name: TaskDynamoDataSource${{self:custom.stage}}
       Description: "A DataSource for Tasks in DynamoDB."
       Type: "AMAZON_DYNAMODB"
       ServiceRoleArn: !GetAtt AppSyncGroupsAuthSampleDynamoDBRole.Arn
